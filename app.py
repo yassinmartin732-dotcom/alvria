@@ -31,21 +31,20 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Cabecera con tu imagen de logo personalizada (logo_completo.png)
-col_logo, col_titulo = st.columns([1, 4])
-with col_logo:
+# 1. Logotipo ubicado en la barra lateral (menú)
+with st.sidebar:
     try:
-        st.image("logo_completo.png", width=140)
+        st.image("logo_completo.png", width=180)
     except:
         st.subheader("💎 Alvria")
+    
+    st.markdown("---")
+    st.header("⚙️ Configuración & Datos")
+    capital_total = st.number_input("Capital Total ($ USD)", min_value=0.0, value=0.0, step=100.0)
+    perfil_riesgo = st.selectbox("Perfil de Riesgo", ["Conservador", "Moderado", "Agresivo"])
 
-with col_titulo:
-    st.title("Alvria — Asistente Financiero Inteligente")
-
-# Barra lateral (Sidebar) para configuración financiera
-st.sidebar.header("⚙️ Configuración & Datos")
-capital_total = st.sidebar.number_input("Capital Total ($ USD)", min_value=0.0, value=0.0, step=100.0)
-perfil_riesgo = st.sidebar.selectbox("Perfil de Riesgo", ["Conservador", "Moderado", "Agresivo"])
+# 2. Título principal limpio en el centro
+st.title("Alvria — Asistente Financiero Inteligente")
 
 # Pestañas principales de la aplicación
 tab_chat, tab_portafolio, tab_mercado = st.tabs(["💬 Chat", "📊 Portafolio", "📈 Mercado"])
