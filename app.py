@@ -31,12 +31,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 1. Logotipo ubicado en la barra lateral (menú)
+# 1. Logotipo grande y perfectamente centrado en la barra lateral
 with st.sidebar:
-    try:
-        st.image("logo_completo.png", width=180)
-    except:
-        st.subheader("💎 Alvria")
+    # Creamos columnas para centrar la imagen
+    col_v1, col_img, col_v2 = st.columns([1, 6, 1])
+    with col_img:
+        try:
+            st.image("logo_completo.png", width=220)
+        except:
+            st.subheader("💎 Alvria")
     
     st.markdown("---")
     st.header("⚙️ Configuración & Datos")
