@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Configuración de la página (Debe ser lo primero)
+# Configuración de la página
 st.set_page_config(
     page_title="Alvria - Asistente Financiero",
     page_icon="favicon.png",
@@ -31,8 +31,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Título y cabecera principal
-st.title("💎 Alvria — Asistente Financiero Inteligente")
+# Cabecera con tu imagen de logo personalizada (logo_completo.png)
+col_logo, col_titulo = st.columns([1, 4])
+with col_logo:
+    try:
+        st.image("logo_completo.png", width=140)
+    except:
+        st.subheader("💎 Alvria")
+
+with col_titulo:
+    st.title("Alvria — Asistente Financiero Inteligente")
 
 # Barra lateral (Sidebar) para configuración financiera
 st.sidebar.header("⚙️ Configuración & Datos")
