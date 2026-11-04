@@ -10,10 +10,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Estilos visuales personalizados e Inyección de metadatos SEO / Google Analytics
+# Estilos visuales e Inyección de metadatos SEO / Google Search Console
 st.markdown("""
     <head>
         <meta name="google-site-verification" content="i8Lmkk4heGKxUsSaGrSh7-HrKS9KkDmdJfQHyVxiwNE" />
+        <meta name="description" content="Alvria es tu Asistente Financiero Inteligente con IA. Gestiona tu capital, analiza perfiles de riesgo y consulta el mercado en tiempo real." />
+        <title>Alvria — Asistente Financiero Inteligente</title>
         <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-P46CVH99"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
