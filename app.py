@@ -1,4 +1,6 @@
 import streamlit as st
+import yfinance as yf
+import plotly.graph_objects as go
 
 # Configuración de la página
 st.set_page_config(
@@ -31,9 +33,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 1. Logotipo grande y perfectamente centrado en la barra lateral
+# 1. Logotipo grande y centrado en la barra lateral
 with st.sidebar:
-    # Creamos columnas para centrar la imagen
     col_v1, col_img, col_v2 = st.columns([1, 6, 1])
     with col_img:
         try:
@@ -56,22 +57,18 @@ with tab_chat:
     st.subheader("✨ Where should we start?")
     st.write(f"Hola, soy **Alvria**. Estoy lista para ayudarte con tus inversiones, estructurar tu capital de **${capital_total:,.2f} USD** bajo un perfil **{perfil_riesgo}**.")
 
-    # Inicializar el historial del chat
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Mostrar mensajes previos
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Entrada del usuario para el chat
     if prompt := st.chat_input("Escribe tu consulta financiera..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # Respuesta inteligente adaptada al perfil
         with st.chat_message("assistant"):
             if capital_total == 0:
                 respuesta = "Para darte una recomendación precisa, por favor define primero tu **Capital Total** en la barra lateral de la izquierda."
@@ -94,4 +91,37 @@ with tab_portafolio:
 
 with tab_mercado:
     st.subheader("📈 Mercado en Tiempo Real")
-    st.info("Buscador y cotizador de acciones y criptomonedas integrado.")
+    st.write("Consulta el precio actual y el historial de acciones o criptomonedas (ej. `AAPL`, `TSLA`, `BTC-USD`, `NVDA`).")
+    
+    # Buscador de tickers
+    ticker_symbol = st.text_input("Símbolo del Activo (Ticker):", value="AAPL").upper()
+    
+    if ticker_symbol:
+        try:
+            ticker_data = yf.Ticker(ticker_symbol)
+            hist = ticker_data.history(period="1mo")
+            
+            if not hist.empty:
+                current_price = hist['Close'].iloc[-1]
+                prev_price = hist['Close'].iloc[-2]
+                change = ((current_price - prev_price) / prev_price) * 100
+                
+                col1, col2 = st.columns(2)
+                col1.metric(label=f"Precio Actual ({ticker_symbol})", value=f"${current_price:,.2f} USD", delta=f"{change:.2f}%")
+                
+                # Gráfico de la cotización
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=hist.index, y=hist['Close'], mode='lines', name='Cierre', line=dict(color='#00d26a', width=2)))
+                fig.update_layout(
+                    title=f"Comportamiento Histórico (Último Mes) - {ticker_symbol}",
+                    xaxis_title="Fecha",
+                    yaxis_title="Precio (USD)",
+                    plot_bgcolor='#0b0f19',
+                    paper_bgcolor='#0b0f19',
+                    font=dict(color='white')
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.warning("No se encontraron datos para este símbolo. Intenta con otro (ej. AAPL, MSFT, TSLA).")
+        except Exception as e:
+            st.error(f"Error al obtener los datos del mercado: {e}")
