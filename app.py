@@ -15,8 +15,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. Inyección de CSS (Corregido con unsafe_allow_html=True)
+# 2. Verificación de Google Search Console & Inyección de CSS
 st.markdown("""
+<meta name="google-site-verification" content="i8Lmkk4heGKxUsSaGrSh7-HrKS9KkDmdJfQHyVxiwNE" />
 <style>
     .stApp { 
         background-color: #0e1117; 
