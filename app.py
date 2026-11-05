@@ -2,15 +2,29 @@ import streamlit as st
 import yfinance as yf
 import plotly.graph_objects as go
 
-# ==========================================
-# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA
-# ==========================================
+# Configuración inicial de la página
 st.set_page_config(
     page_title="Alvria — Asistente Financiero Inteligente",
     page_icon="favicon.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Inyección de la nueva etiqueta de verificación de Google Search Console
+st.markdown("""
+    <head>
+        <meta name="google-site-verification" content="W8K3eTaudR5iibV6knJeUiN1CR4ynzCPtDk98qyr4GQ" />
+    </head>
+    <style>
+        .stApp {
+            background-color: #0b0f19;
+            color: #ffffff;
+        }
+        sidebar .stSidebar {
+            background-color: #111827;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Estilos visuales personalizados
 st.markdown("""
