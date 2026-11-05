@@ -2,7 +2,9 @@ import streamlit as st
 import yfinance as yf
 import plotly.graph_objects as go
 
-# Configuración inicial de la página
+# ==========================================
+# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA
+# ==========================================
 st.set_page_config(
     page_title="Alvria — Asistente Financiero Inteligente",
     page_icon="favicon.png",
@@ -10,7 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Inyección de la nueva etiqueta de verificación de Google Search Console
+# ==========================================
+# 2. INYECCIÓN DE VERIFICACIÓN Y ESTILOS
+# ==========================================
 st.markdown("""
     <head>
         <meta name="google-site-verification" content="W8K3eTaudR5iibV6knJeUiN1CR4ynzCPtDk98qyr4GQ" />
@@ -26,21 +30,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Estilos visuales personalizados
-st.markdown("""
-    <style>
-        .stApp {
-            background-color: #0b0f19;
-            color: #ffffff;
-        }
-        sidebar .stSidebar {
-            background-color: #111827;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # ==========================================
-# 2. BARRA LATERAL (LOGOTIPO Y CONFIGURACIÓN)
+# 3. BARRA LATERAL (LOGOTIPO Y CONFIGURACIÓN)
 # ==========================================
 with st.sidebar:
     col_v1, col_img, col_v2 = st.columns([1, 6, 1])
@@ -56,7 +47,7 @@ with st.sidebar:
     perfil_riesgo = st.selectbox("Perfil de Riesgo", ["Conservador", "Moderado", "Agresivo"])
 
 # ==========================================
-# 3. CUERPO PRINCIPAL Y PESTAÑAS DE ALVRIA
+# 4. CUERPO PRINCIPAL Y PESTAÑAS DE ALVRIA
 # ==========================================
 st.title("Alvria — Asistente Financiero Inteligente")
 
