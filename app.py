@@ -3,7 +3,7 @@ import yfinance as yf
 import plotly.graph_objects as go
 
 # ==========================================
-# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA (Única y obligatoria al inicio)
+# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA
 # ==========================================
 st.set_page_config(
     page_title="Alvria — Asistente Financiero Inteligente",
@@ -12,22 +12,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==========================================
-# 2. INYECCIÓN DE VERIFICACIÓN GOOGLE SEARCH CONSOLE Y ESTILOS
-# ==========================================
+# Estilos visuales personalizados
 st.markdown("""
-    <head>
-        <meta name="google-site-verification" content="i8Lmkk4heGKxUsSaGrSh7-HrKS9KkDmdJfQHyVxiwNE" />
-        <meta name="description" content="Alvria es tu Asistente Financiero Inteligente con IA. Gestiona tu capital, analiza perfiles de riesgo y consulta el mercado en tiempo real." />
-        <title>Alvria — Asistente Financiero Inteligente</title>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-P46CVH99"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('get', 'GTM-P46CVH99', 'config', 'GTM-P46CVH99');
-        </script>
-    </head>
     <style>
         .stApp {
             background-color: #0b0f19;
@@ -40,7 +26,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 3. BARRA LATERAL (LOGOTIPO Y CONFIGURACIÓN)
+# 2. BARRA LATERAL (LOGOTIPO Y CONFIGURACIÓN)
 # ==========================================
 with st.sidebar:
     col_v1, col_img, col_v2 = st.columns([1, 6, 1])
@@ -56,7 +42,7 @@ with st.sidebar:
     perfil_riesgo = st.selectbox("Perfil de Riesgo", ["Conservador", "Moderado", "Agresivo"])
 
 # ==========================================
-# 4. CUERPO PRINCIPAL Y PESTAÑAS DE ALVRIA
+# 3. CUERPO PRINCIPAL Y PESTAÑAS DE ALVRIA
 # ==========================================
 st.title("Alvria — Asistente Financiero Inteligente")
 
