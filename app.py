@@ -2,15 +2,19 @@ import streamlit as st
 import yfinance as yf
 import plotly.graph_objects as go
 
-# Configuración de la página
+# ==========================================
+# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA (Única y obligatoria al inicio)
+# ==========================================
 st.set_page_config(
-    page_title="Alvria - Asistente Financiero",
+    page_title="Alvria — Asistente Financiero Inteligente",
     page_icon="favicon.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Estilos visuales e Inyección de metadatos SEO / Google Search Console
+# ==========================================
+# 2. INYECCIÓN DE VERIFICACIÓN GOOGLE SEARCH CONSOLE Y ESTILOS
+# ==========================================
 st.markdown("""
     <head>
         <meta name="google-site-verification" content="i8Lmkk4heGKxUsSaGrSh7-HrKS9KkDmdJfQHyVxiwNE" />
@@ -35,7 +39,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 1. Logotipo grande y centrado en la barra lateral
+# ==========================================
+# 3. BARRA LATERAL (LOGOTIPO Y CONFIGURACIÓN)
+# ==========================================
 with st.sidebar:
     col_v1, col_img, col_v2 = st.columns([1, 6, 1])
     with col_img:
@@ -49,7 +55,9 @@ with st.sidebar:
     capital_total = st.number_input("Capital Total ($ USD)", min_value=0.0, value=0.0, step=100.0)
     perfil_riesgo = st.selectbox("Perfil de Riesgo", ["Conservador", "Moderado", "Agresivo"])
 
-# 2. Título principal limpio en el centro
+# ==========================================
+# 4. CUERPO PRINCIPAL Y PESTAÑAS DE ALVRIA
+# ==========================================
 st.title("Alvria — Asistente Financiero Inteligente")
 
 # Pestañas principales de la aplicación
